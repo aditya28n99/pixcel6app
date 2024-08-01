@@ -17,3 +17,6 @@ This project is a single-page application, that fetches and displays a list of e
 
 ## Let's Build
 - Initialized EmployeeList page with starting styling check-up!!
+- Imported Multiline Table component from Tailwind UI.
+- Replicated Users Object and Fetched Successfully in the table. 
+# Learning - Found Padstart to ensure that the Id should have 2 charactors.
