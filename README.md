@@ -27,3 +27,5 @@ This project is a single-page application, that fetches and displays a list of e
 
 - Resolved the error - "Cannot read properties of undefined - map is not a funtion"
 - (updated setEmp(response.users))
+
+- Implimented sorting. Employee data sorted by Asc & Dec order using ID.
