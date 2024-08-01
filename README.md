@@ -13,3 +13,7 @@ This project is a single-page application, that fetches and displays a list of e
 ### - Initial Setup
 - Initialized the project with Create React App.
 - Set up the project directory structure.
+- Installed Tailwind UI, Tailwind Css and Initialized tailwind.config.js
+
+## Let's Build
+- Initialized EmployeeList page with starting styling check-up!!
