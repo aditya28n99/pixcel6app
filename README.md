@@ -19,4 +19,9 @@ This project is a single-page application, that fetches and displays a list of e
 - Initialized EmployeeList page with starting styling check-up!!
 - Imported Multiline Table component from Tailwind UI.
 - Replicated Users Object and Fetched Successfully in the table. 
-# Learning - Found Padstart to ensure that the Id should have 2 charactors.
+##### Learning - Found Padstart to ensure that the Id should have 2 charactors.
+
+- Installed 'axios' and created services folder to fetch API Data.
+- Exported fetchEmployeeData with Successful get request.
+- By using UseEffect Hook, Got API Data in the list Page.
+

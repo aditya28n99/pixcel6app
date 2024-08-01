@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react"
+import { fetchEmployeeData } from '../services/employeeServices';
+
 // Dummy Users - Hardcoded Data
 const users = [
     {
@@ -45,6 +48,25 @@ const users = [
 ]
 // Added Tailwind UI Multiline Table Component. 
 export default function EmployeeList() {
+ 
+    // using useState Hook, Initialized Employeelist empty arrya.
+    const [empList, setEmpList] = useState([]);
+
+    useEffect(() => {
+        const getEmpData = async () => {
+            try{
+                const response = await fetchEmployeeData();
+                console.log("Got API Data in the list!! :", response);
+                setEmpList(response.data);
+            }catch(error){
+                console.log("failed to get the data :", error);
+            }
+        }
+        getEmpData();
+    },[]);
+
+
+    
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
