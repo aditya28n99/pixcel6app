@@ -33,4 +33,7 @@ This project is a single-page application, that fetches and displays a list of e
 
 - Updated UI and Funtionalitis, added filter icon and funtion. 
 - Now to make filter component, I have improted Tailwind UI dropdowns but it uses Heroicons, so Installing @headlessui/react @heroicons/react it's a good lib.
-- 
+- Updated dropdowns feilds as we required, and mapped availabe options for the dropdown Items.
+- passing the value through the onlick event to the funtion filterByState and FilterByGender.
+- Finally, setState updated in the sorting feilds so we can sort the data.
+

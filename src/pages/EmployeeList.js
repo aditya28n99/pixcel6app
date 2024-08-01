@@ -20,7 +20,7 @@ export default function EmployeeList() {
                 console.log("Got API Data in the list!! :", response);
                 // setEmpList(response.data);
                 setEmpList(response.users); // specifid users object!!
-
+                setFilteredList(response.users);
             } catch (error) {
                 console.log("failed to get the data :", error);
             }
@@ -36,11 +36,14 @@ export default function EmployeeList() {
             setFlag('ascending');
             // console.log(response);
             setEmpList(response);
+            setFilteredList(response); // getting resp in the filterdlist as we ware mapping it.
         } else {
             const response = empList.slice().sort((b, a) => (a.id - b.id));
             setFlag('descending')
             // console.log(response);
             setEmpList(response);
+            setFilteredList(response);
+
         }
     }
     const handleAgeSort = () => {
@@ -49,11 +52,14 @@ export default function EmployeeList() {
             setFlag('ascending');
             // console.log(response);
             setEmpList(response);
+            setFilteredList(response);
+
         } else {
             const response = empList.slice().sort((b, a) => (a.age - b.age));
             setFlag('descending')
             console.log(response);
             setEmpList(response);
+            setFilteredList(response);
         }
     }
     const handleNameSort = () => {
@@ -62,20 +68,39 @@ export default function EmployeeList() {
             setFlag('ascending');
             // console.log(response);
             setEmpList(response);
+            setFilteredList(response);
         } else {
             const response = empList.slice().sort((b, a) => (a.firstName > b.firstName));
             setFlag('descending')
             // console.log(response);
             setEmpList(response);
+            setFilteredList(response);
+
         }
     }
 
+    // const countryOptions = [...new Set(empList.map((employee, index) => employee.address.country))];
+    // Here if we used to filterout the values using country then all the employees comes from US, then I decided to filter it out from "State" value.
+
+    const stateOptions = [...new Set(empList.map((employee, index) => employee.address.state))];
+    const genderOptions = [...new Set(empList.map((employee, index) => employee.gender))];
+
+    setTimeout(() => {
+        console.log(stateOptions);
+        // Now we get all the availabe states and genders.
+        console.log(genderOptions);
+    }, 2000)
 
     //Implimenting fitler funcion for Filtering by Country
 
-    const filterByCountry = (country) => {
+    const filterByState = (state) => { // changed name as State
         //need contry to filtre the condition.
-        const response = empList.filter((e) => e.address.country === country);
+        const response = empList.filter((e) => e.address.state === state);
+        console.log("Filterd List response: ", response);
+        setFilteredList(response);
+    }
+    const filterByGender = (gender) => {
+        const response = empList.filter((e) => e.gender === gender);
         console.log("Filterd List response: ", response);
         setFilteredList(response);
     }
@@ -92,9 +117,13 @@ export default function EmployeeList() {
                 <div className="mt-4 sm:ml-8 sm:mt-0 sm:flex-none inline-block">
 
                     {/* Implimening Filters */}
-                    <DropdownFilters/>
-                    <button className="mr-5">Country</button>
-                    <button>Gender</button>
+                    <DropdownFilters
+                        stateOptions={stateOptions}
+                        genderOptions={genderOptions}
+                        filterByState={filterByState}
+                        filterByGender={filterByGender}
+                    />
+                    {/* // Removed unnessesory buttons */}
                 </div>
             </div>
             <div className="mt-8 flow-root border-2 rounded-2xl px-6">
@@ -139,7 +168,7 @@ export default function EmployeeList() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                                {empList.map(person => (
+                                {filteredList.map(person => (
                                     <tr key={person.id}>
                                         <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                                             <div className="flex items-center">
