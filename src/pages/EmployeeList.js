@@ -27,7 +27,7 @@ export default function EmployeeList() {
     }, []);
 
     // Implimenting Sorting Funtionality.
-    const handleSort = () => {
+    const handleIDSort = () => {
         if (flag === 'descending') {
             //impimneting simple sorting funtion.
             const response = empList.slice().sort((a, b) => (a.id - b.id));
@@ -36,6 +36,32 @@ export default function EmployeeList() {
             setEmpList(response);
         } else {
             const response = empList.slice().sort((b, a) => (a.id - b.id));
+            setFlag('descending')
+            console.log(response);
+            setEmpList(response);
+        }
+    }
+    const handleAgeSort = () => {
+        if (flag === 'descending') {
+            const response = empList.slice().sort((a, b) => (a.age - b.age));
+            setFlag('ascending');
+            console.log(response);
+            setEmpList(response);
+        } else {
+            const response = empList.slice().sort((b, a) => (a.age - b.age));
+            setFlag('descending')
+            console.log(response);
+            setEmpList(response);
+        }
+    }
+    const handleNameSort = () => {
+        if (flag === 'descending') {
+            const response = empList.slice().sort((a, b) => (a.firstName < b.firstName));
+            setFlag('ascending');
+            console.log(response);
+            setEmpList(response);
+        } else {
+            const response = empList.slice().sort((b, a) => (a.firstName > b.firstName));
             setFlag('descending')
             console.log(response);
             setEmpList(response);
@@ -69,7 +95,7 @@ export default function EmployeeList() {
                                     <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">
                                         Id
                                         {/* Added Sort Icon and styled in tailwind */}
-                                        <button className="font-sm py-3.5 pl-4 pr-3 text-left text-sm text-gray-900 sm:pl-0" onClick={handleSort}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 ml-2 ">
+                                        <button className="font-sm py-3.5 pl-4 pr-3 text-left text-sm text-gray-900 sm:pl-0" onClick={handleIDSort}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 ml-2 ">
                                             <path fillRule="evenodd" d="M6.97 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06L8.25 4.81V16.5a.75.75 0 0 1-1.5 0V4.81L3.53 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5Zm9.53 4.28a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V7.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
                                         </svg>
                                         </button>
@@ -79,9 +105,19 @@ export default function EmployeeList() {
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         Full Name
+                                        {/* Added Sort Icon and styled in tailwind */}
+                                        <button className="font-sm py-3.5 pl-4 pr-3 text-left text-sm text-gray-900 sm:pl-0" onClick={handleNameSort}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 ml-2 ">
+                                            <path fillRule="evenodd" d="M6.97 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06L8.25 4.81V16.5a.75.75 0 0 1-1.5 0V4.81L3.53 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5Zm9.53 4.28a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V7.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
+                                        </svg>
+                                        </button>
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         Demography
+                                        {/* Added Sort Icon and styled in tailwind */}
+                                        <button className="font-sm py-3.5 pl-4 pr-3 text-left text-sm text-gray-900 sm:pl-0" onClick={handleAgeSort}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-5 ml-2 ">
+                                            <path fillRule="evenodd" d="M6.97 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06L8.25 4.81V16.5a.75.75 0 0 1-1.5 0V4.81L3.53 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5Zm9.53 4.28a.75.75 0 0 1 .75.75v11.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 1 1 1.06-1.06l3.22 3.22V7.5a.75.75 0 0 1 .75-.75Z" clipRule="evenodd" />
+                                        </svg>
+                                        </button>
                                     </th>
                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                         Designation
