@@ -32,3 +32,5 @@ This project is a single-page application, that fetches and displays a list of e
 - similarly sorted age and name. 
 
 - Updated UI and Funtionalitis, added filter icon and funtion. 
+- Now to make filter component, I have improted Tailwind UI dropdowns but it uses Heroicons, so Installing @headlessui/react @heroicons/react it's a good lib.
+- 

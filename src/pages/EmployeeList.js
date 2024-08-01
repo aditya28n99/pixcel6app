@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { fetchEmployeeData } from '../services/employeeServices';
+import DropdownFilters from "../components/DropdownFilters";
 
 // Removed Hardcoded Data as we fetched API
 
@@ -91,6 +92,7 @@ export default function EmployeeList() {
                 <div className="mt-4 sm:ml-8 sm:mt-0 sm:flex-none inline-block">
 
                     {/* Implimening Filters */}
+                    <DropdownFilters/>
                     <button className="mr-5">Country</button>
                     <button>Gender</button>
                 </div>
