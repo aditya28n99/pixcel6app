@@ -9,6 +9,7 @@ export default function EmployeeList() {
     // using useState Hook, Initialized Employeelist empty arrya.
     const [empList, setEmpList] = useState([]);
     const [flag, setFlag] = useState('ascending');
+    const [filteredList, setFilteredList] = useState([]); // for filtered data 
 
 
     useEffect(() => {
@@ -32,12 +33,12 @@ export default function EmployeeList() {
             //impimneting simple sorting funtion.
             const response = empList.slice().sort((a, b) => (a.id - b.id));
             setFlag('ascending');
-            console.log(response);
+            // console.log(response);
             setEmpList(response);
         } else {
             const response = empList.slice().sort((b, a) => (a.id - b.id));
             setFlag('descending')
-            console.log(response);
+            // console.log(response);
             setEmpList(response);
         }
     }
@@ -45,7 +46,7 @@ export default function EmployeeList() {
         if (flag === 'descending') {
             const response = empList.slice().sort((a, b) => (a.age - b.age));
             setFlag('ascending');
-            console.log(response);
+            // console.log(response);
             setEmpList(response);
         } else {
             const response = empList.slice().sort((b, a) => (a.age - b.age));
@@ -58,32 +59,40 @@ export default function EmployeeList() {
         if (flag === 'descending') {
             const response = empList.slice().sort((a, b) => (a.firstName < b.firstName));
             setFlag('ascending');
-            console.log(response);
+            // console.log(response);
             setEmpList(response);
         } else {
             const response = empList.slice().sort((b, a) => (a.firstName > b.firstName));
             setFlag('descending')
-            console.log(response);
+            // console.log(response);
             setEmpList(response);
         }
     }
 
+
+    //Implimenting fitler funcion for Filtering by Country
+
+    const filterByCountry = (country) => {
+        //need contry to filtre the condition.
+        const response = empList.filter((e) => e.address.country === country);
+        console.log("Filterd List response: ", response);
+        setFilteredList(response);
+    }
+
     return (
-        <div className="px-4 sm:px-6 lg:px-8">
+        <div className="p-6 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
                 <div className="sm:flex-auto">
-                    <h1 className="text-base font-semibold leading-6 text-gray-900">Users</h1>
-                    <p className="mt-2 text-sm text-gray-700">
-                        A list of all the users in your account including their name, title, email and role.
-                    </p>
+                    <h1 className="text-4xl font-bold leading-6 text-gray-900">Employees</h1>
                 </div>
-                <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                    <button
-                        type="button"
-                        className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    >
-                        Add user
-                    </button>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
+                    <path fillRule="evenodd" d="M3.792 2.938A49.069 49.069 0 0 1 12 2.25c2.797 0 5.54.236 8.209.688a1.857 1.857 0 0 1 1.541 1.836v1.044a3 3 0 0 1-.879 2.121l-6.182 6.182a1.5 1.5 0 0 0-.439 1.061v2.927a3 3 0 0 1-1.658 2.684l-1.757.878A.75.75 0 0 1 9.75 21v-5.818a1.5 1.5 0 0 0-.44-1.06L3.13 7.938a3 3 0 0 1-.879-2.121V4.774c0-.897.64-1.683 1.542-1.836Z" clipRule="evenodd" />
+                </svg>
+                <div className="mt-4 sm:ml-8 sm:mt-0 sm:flex-none inline-block">
+
+                    {/* Implimening Filters */}
+                    <button className="mr-5">Country</button>
+                    <button>Gender</button>
                 </div>
             </div>
             <div className="mt-8 flow-root border-2 rounded-2xl px-6">

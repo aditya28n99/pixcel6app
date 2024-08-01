@@ -30,3 +30,5 @@ This project is a single-page application, that fetches and displays a list of e
 
 - Implimented sorting. Employee data sorted by Asc & Dec order using ID.
 - similarly sorted age and name. 
+
+- Updated UI and Funtionalitis, added filter icon and funtion. 
