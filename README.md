@@ -25,3 +25,5 @@ This project is a single-page application, that fetches and displays a list of e
 - Exported fetchEmployeeData with Successful get request.
 - By using UseEffect Hook, Got API Data in the list Page.
 
+- Resolved the error - "Cannot read properties of undefined - map is not a funtion"
+- (updated setEmp(response.users))

@@ -1,51 +1,8 @@
 import { useEffect, useState } from "react"
 import { fetchEmployeeData } from '../services/employeeServices';
 
-// Dummy Users - Hardcoded Data
-const users = [
-    {
-        "id": 1,
-        "firstName": "Emily",
-        "lastName": "Johnson",
-        "maidenName": "Smith",
-        "age": 28,
-        "gender": "female",
+// Removed Hardcoded Data as we fetched API
 
-        "birthDate": "1996-5-30",
-        "image": "https://dummyjson.com/icon/emilys/128",
-
-        "address": {
-            "address": "626 Main Street",
-            "city": "Phoenix",
-            "state": "Mississippi",
-            "stateCode": "MS",
-            "postalCode": "29112",
-            "coordinates": {
-                "lat": -77.16213,
-                "lng": -92.084824
-            },
-            "country": "United States"
-        },
-
-        "company": {
-            "department": "Engineering",
-            "name": "Dooley, Kozey and Cronin",
-            "title": "Sales Manager",
-            "address": {
-                "address": "263 Tenth Street",
-                "city": "San Francisco",
-                "state": "Wisconsin",
-                "stateCode": "WI",
-                "postalCode": "37657",
-                "coordinates": {
-                    "lat": 71.814525,
-                    "lng": -161.150263
-                },
-                "country": "United States"
-            }
-        },
-    },
-]
 // Added Tailwind UI Multiline Table Component. 
 export default function EmployeeList() {
  
@@ -57,7 +14,9 @@ export default function EmployeeList() {
             try{
                 const response = await fetchEmployeeData();
                 console.log("Got API Data in the list!! :", response);
-                setEmpList(response.data);
+                // setEmpList(response.data);
+                setEmpList(response.users); // specifid users object!!
+
             }catch(error){
                 console.log("failed to get the data :", error);
             }
@@ -65,8 +24,6 @@ export default function EmployeeList() {
         getEmpData();
     },[]);
 
-
-    
     return (
         <div className="px-4 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
@@ -115,7 +72,7 @@ export default function EmployeeList() {
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200 bg-white">
-                                {users.map(person => (
+                                {empList.map(person => (
                                     <tr key={person.id}>
                                         <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
                                             <div className="flex items-center">
