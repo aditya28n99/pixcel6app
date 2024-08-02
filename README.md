@@ -51,3 +51,7 @@ This project is a single-page application, that fetches and displays a list of e
 
 - added colors to the pngs and icons -[#800000]
 
+- 
+
+
+

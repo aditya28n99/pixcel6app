@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense, lazy } from "react"
 import { fetchEmployeeData } from '../services/employeeServices';
 import DropdownFilters from "../components/DropdownFilters";
-import EmployeeTable from "../components/EmployeeTable";
+
+// to reduce web-loading time added lazy loading to the table component.
+const EmployeeTable = lazy(() => import("../components/EmployeeTable"));
 
 // Removed Hardcoded Data as we fetched API
 
@@ -65,13 +67,13 @@ export default function EmployeeList() {
     }
     const handleNameSort = () => {
         if (flag === 'descending') {
-            const response = empList.slice().sort((a, b) =>  a.firstName.localeCompare(b.firstName));
+            const response = empList.slice().sort((a, b) => a.firstName.localeCompare(b.firstName));
             setFlag('ascending');
             // console.log(response);
             setEmpList(response);
             setFilteredList(response);
         } else {
-            const response = empList.slice().sort((b, a) =>  a.firstName.localeCompare(b.firstName));
+            const response = empList.slice().sort((b, a) => a.firstName.localeCompare(b.firstName));
             setFlag('descending')
             // console.log(response);
             setEmpList(response);
@@ -130,13 +132,20 @@ export default function EmployeeList() {
             <div className="mt-8 flow-root border-2 rounded-2xl px-6">
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                        {/* Table saperated */}
-                        <EmployeeTable
-                        handleIDSort={handleIDSort}
-                        handleAgeSort={handleAgeSort}
-                        handleNameSort={handleNameSort}
-                        filteredList={filteredList}
-                        />
+                        {/* Table saperated, and added suspense to the component. */}
+                        <Suspense fallback=
+                            {<div className="flex flex-col items-center justify-center min-h-screen">
+                                <div className="text-lg font-semibold mb-4">Employee Data is loading, please wait...</div>
+                                <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+                            </div>
+                            }>
+                            <EmployeeTable
+                                handleIDSort={handleIDSort}
+                                handleAgeSort={handleAgeSort}
+                                handleNameSort={handleNameSort}
+                                filteredList={filteredList}
+                            />
+                        </Suspense>
                     </div>
                 </div>
             </div>
