@@ -43,3 +43,5 @@ This project is a single-page application, that fetches and displays a list of e
 - by passing correct properties, saperated table in the new EmployeeTable.js
 #### Learning - Found localeCompare function. More easear to handel.
 - Updated Namesort funtions with localeCompare() 
+
+- Installed Header Component from Tailwind UI
