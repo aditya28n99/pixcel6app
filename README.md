@@ -54,6 +54,7 @@ This project is a single-page application, that fetches and displays a list of e
 - Implimented Lazy loading on table to optimize performance.
 - added loading fallback.
 
-
-
+### Error Handling
+- adding loading and errors as in the components.
+- Implimented error and loder components and handeld errors and loadings.
 

@@ -1,6 +1,8 @@
 import { useEffect, useState, Suspense, lazy } from "react"
 import { fetchEmployeeData } from '../services/employeeServices';
 import DropdownFilters from "../components/DropdownFilters";
+import Loader from "../components/Loader";
+import Error from "../components/Error";
 
 // to reduce web-loading time added lazy loading to the table component.
 const EmployeeTable = lazy(() => import("../components/EmployeeTable"));
@@ -14,17 +16,23 @@ export default function EmployeeList() {
     const [empList, setEmpList] = useState([]);
     const [flag, setFlag] = useState('ascending');
     const [filteredList, setFilteredList] = useState([]); // for filtered data 
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);  // Add loading state
 
 
     useEffect(() => {
         const getEmpData = async () => {
+            setLoading(true); 
             try {
                 const response = await fetchEmployeeData();
                 console.log("Got API Data in the list!! :", response);
                 // setEmpList(response.data);
                 setEmpList(response.users); // specifid users object!!
                 setFilteredList(response.users);
+                setLoading(false);
             } catch (error) {
+                setLoading(false);
+                setError(error);
                 console.log("failed to get the data :", error);
             }
         }
@@ -107,7 +115,16 @@ export default function EmployeeList() {
         console.log("Filterd List response: ", response);
         setFilteredList(response);
     }
-
+    if(loading){
+        return(
+            <Loader message={'Employer data is Loading!!'}/>
+        );
+    } else if(error){
+        return
+        (
+            <Error message={`Unfortuetly we got an error: ${error}`}/>
+        )
+    }else{
     return (
         <div className="p-6 sm:px-6 lg:px-8">
             <div className="sm:flex sm:items-center">
@@ -134,10 +151,7 @@ export default function EmployeeList() {
                     <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                         {/* Table saperated, and added suspense to the component. */}
                         <Suspense fallback=
-                            {<div className="flex flex-col items-center justify-center min-h-screen">
-                                <div className="text-lg font-semibold mb-4">Employee Data is loading, please wait...</div>
-                                <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
-                            </div>
+                            {<Loader message={'Employer data is Loading!!'} />
                             }>
                             <EmployeeTable
                                 handleIDSort={handleIDSort}
@@ -151,4 +165,5 @@ export default function EmployeeList() {
             </div>
         </div>
     )
+}
 }
