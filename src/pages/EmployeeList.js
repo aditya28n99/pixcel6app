@@ -65,13 +65,13 @@ export default function EmployeeList() {
     }
     const handleNameSort = () => {
         if (flag === 'descending') {
-            const response = empList.slice().sort((a, b) => (a.firstName < b.firstName));
+            const response = empList.slice().sort((a, b) =>  a.firstName.localeCompare(b.firstName));
             setFlag('ascending');
             // console.log(response);
             setEmpList(response);
             setFilteredList(response);
         } else {
-            const response = empList.slice().sort((b, a) => (a.firstName > b.firstName));
+            const response = empList.slice().sort((b, a) =>  a.firstName.localeCompare(b.firstName));
             setFlag('descending')
             // console.log(response);
             setEmpList(response);

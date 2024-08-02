@@ -14,12 +14,14 @@ This project is a single-page application, that fetches and displays a list of e
 - Initialized the project with Create React App.
 - Set up the project directory structure.
 - Installed Tailwind UI, Tailwind Css and Initialized tailwind.config.js
+- Installed 'axios' for API services.
+- Installing @headlessui/react @heroicons/react
 
 ## Let's Build
 - Initialized EmployeeList page with starting styling check-up!!
 - Imported Multiline Table component from Tailwind UI.
 - Replicated Users Object and Fetched Successfully in the table. 
-##### Learning - Found Padstart to ensure that the Id should have 2 charactors.
+#### Learning - Found Padstart to ensure that the Id should have 2 charactors.
 
 - Installed 'axios' and created services folder to fetch API Data.
 - Exported fetchEmployeeData with Successful get request.
@@ -39,3 +41,5 @@ This project is a single-page application, that fetches and displays a list of e
 
 ### Saperating the code in components - Saperating table component.
 - by passing correct properties, saperated table in the new EmployeeTable.js
+#### Learning - Found localeCompare function. More easear to handel.
+- Updated Namesort funtions with localeCompare() 
