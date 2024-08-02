@@ -47,4 +47,7 @@ This project is a single-page application, that fetches and displays a list of e
 - Installed Header Component from Tailwind UI
 - removed unused part from the component
 - updated logo - https://pixel6.co/wp-content/themes/pixel6/img/logo.png
-- fixed height of the png
+- fixed height of the png and added border bottom to the component.
+
+- added colors to the pngs and icons -[#800000]
+
