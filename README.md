@@ -37,3 +37,5 @@ This project is a single-page application, that fetches and displays a list of e
 - passing the value through the onlick event to the funtion filterByState and FilterByGender.
 - Finally, setState updated in the sorting feilds so we can sort the data.
 
+### Saperating the code in components - Saperating table component.
+- by passing correct properties, saperated table in the new EmployeeTable.js
